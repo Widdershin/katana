@@ -18,12 +18,18 @@ class KataFileIO
     kata_files.each do |filename|
       File.open(filename) do |file|
         file_contents = file.read
-        new_kata = Kata.new(file_contents)
+        new_kata = Kata.new(filename, file_contents)
         loaded_katas << new_kata
       end
     end
 
     loaded_katas
+  end
+
+  def save(kata)
+    File.open(kata.filename, "w") do |file|
+      file.write(kata.code)
+    end
   end
 end
 
@@ -32,4 +38,10 @@ end
 # katas = io.load
 
 # p katas
-# eval katas[0].code
+# test_kata = katas[0]
+
+# eval test_kata.code
+
+# test_kata.code += "\n# This code is sick nasty"
+
+# io.save(test_kata)
