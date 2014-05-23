@@ -5,4 +5,4 @@ class Assert
     end
   end
 end
-Assert.equal(6,10/2)
+# Assert.equal(6,10/2)
