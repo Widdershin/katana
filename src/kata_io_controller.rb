@@ -13,8 +13,6 @@ class KataFileIO
 
     kata_files = Dir.glob(kata_folder + '/*.rb')
 
-    puts(kata_folder + '/*.rb')
-
     kata_files.each do |filename|
       File.open(filename) do |file|
         file_contents = file.read
@@ -31,6 +29,20 @@ class KataFileIO
       file.write(kata.code)
     end
   end
+
+  def start_new_attempt(kata)
+    File.open("current_kata_attempt.rb", "w") do |file|
+      file.write(kata.code)
+    end
+  end
+
+  def create(kata_name)
+    %x(touch "#{kata_folder}/#{kata_name}.rb")
+  end
+
+  def remove(kata)
+    File.delete(kata.filename)
+  end
 end
 
 # io = KataFileIO.new('katas')
@@ -40,8 +52,12 @@ end
 # p katas
 # test_kata = katas[0]
 
-# eval test_kata.code
+# # eval test_kata.code
 
-# test_kata.code += "\n# This code is sick nasty"
+# # test_kata.code += "\n# This code is sick nasty"
 
-# io.save(test_kata)
+# # io.start_new_attempt(test_kata)
+
+# # io.create("our_awesome_kata")
+
+# io.remove(test_kata)
