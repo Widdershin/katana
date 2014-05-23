@@ -46,8 +46,8 @@ class KataFileIO
     %x(touch "#{kata_folder}/#{kata_name}.rb")
   end
 
-  def remove(kata)
-    File.delete(kata.filename)
+  def remove(kata_name)
+    File.delete("#{kata_folder}/#{kata_name}.rb")
   end
 end
 
