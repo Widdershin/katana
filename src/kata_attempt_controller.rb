@@ -22,21 +22,27 @@ class KatanaAttemptController
     until result == true
       result = attempt_kata(kata)
       if result != true
-        puts "Failed with: #{result}. Get back in the jar, you jelly-bean."
+        puts "Failed with: #{result}. Get back in the jar, you jellybean."
+        puts "Would you like to retry? y/n"
+        input = $stdin.gets.chomp
+        if input == "n"
+          break
+        end
       end
     end
-
-    puts "Congratulations, you're a gelatin free jet plane!"
+    if result == true
+      puts "Congratulations, you're a gelatin-free jet plane!"
+    end
   end
 
   def attempt_kata(kata)
     %x(subl -wn current_kata_attempt.rb)
-    File.open("current_kata_attempt.rb") do |file|
-      @code = file.read
+    code = File.open("current_kata_attempt.rb") do |file|
+      file.read
     end
 
     begin
-      eval @code
+      eval code
     rescue Exception => e
       return e.to_s
     end
@@ -44,12 +50,20 @@ class KatanaAttemptController
     true
   end
 
-  def create(file_name)
-    @io.create(file_name)
-    %x(subl -wn "katas/#{file_name}")
+  def create(kata_name)
+    @io.create(kata_name)
+    open_with_subl(kata_name)
   end
 
-  def remove(file_name)
-    @io.remove(file_name)
+  def remove(kata_name)
+    @io.remove(kata_name)
+  end
+
+  def open_with_subl(kata_name)
+    %x(subl -wn "katas/#{kata_name}.rb")
+  end
+
+  def update(kata_name)
+    open_with_subl(kata_name)
   end
 end

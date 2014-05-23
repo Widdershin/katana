@@ -3,4 +3,5 @@
 def div_by_2(number)
 end
 
-Assert.equal(div_by_2(20), 10)
+Assert.equal(10, div_by_2(20))
+Assert.equal(3.5, div_by_2(7))
