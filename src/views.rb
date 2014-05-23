@@ -15,6 +15,10 @@ class ConsoleView
     puts katas
   end
 
+  def display_title(kata)
+    puts "You are now attempting #{kata.filename}"
+  end
+
   def help
     help_text = <<-help
       #{"Usage: katana.rb [options]".colorize(:yellow)}
@@ -28,6 +32,4 @@ class ConsoleView
       help
     puts help_text
   end
-
 end
-

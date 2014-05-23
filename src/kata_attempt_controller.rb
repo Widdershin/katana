@@ -30,6 +30,7 @@ class KatanaAttemptController
     else
       kata = get_kata
     end
+    @view.display_title(kata)
 
     @io.start_new_attempt(kata)
 
