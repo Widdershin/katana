@@ -15,5 +15,7 @@ class ConsoleView
     puts katas
   end
 
+  def display_title(kata)
+    puts "You are now attempting #{kata.filename}"
+  end
 end
-
