@@ -16,7 +16,13 @@ class KataFileIO
     kata_files.each do |filename|
       File.open(filename) do |file|
         file_contents = file.read
-        new_kata = Kata.new(filename, file_contents)
+        first_line = file_contents.lines[0].chomp.gsub(/\s+/,"").downcase
+        tags_prefix = "#tags:"
+        tags = []
+        if first_line.start_with? tags_prefix
+          tags = first_line.slice(tags_prefix.length..-1).split(',')
+        end
+        new_kata = Kata.new(filename, file_contents, tags)
         loaded_katas << new_kata
       end
     end

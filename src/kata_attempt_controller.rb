@@ -9,6 +9,11 @@ class KatanaAttemptController
     @view = ConsoleView.new
   end
 
+  def get_kata_for_tag(tag)
+    katas = @io.load
+    katas.select{|kata| kata.tags.include? tag}.sample
+  end
+
   def get_kata
     katas = @io.load
     katas.sample
@@ -19,8 +24,13 @@ class KatanaAttemptController
     @view.list_all(katas)
   end
 
-  def try
-    kata = get_kata
+  def try(tag=nil)
+    if tag
+      kata = get_kata_for_tag(tag)
+    else
+      kata = get_kata
+    end
+
     @io.start_new_attempt(kata)
 
     result = false
