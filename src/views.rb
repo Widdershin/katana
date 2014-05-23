@@ -2,6 +2,17 @@ require 'colorize'
 require 'pp'
 class ConsoleView
 
+  def sponsors
+    puts "Proudly brought to you by Hings Tofu"
+    puts <<-ascii
+         _//|.-~~~~-,
+       _/66  \       \_@
+      (")_   /   /   |
+        '--'|| |-\  /
+   jgs      //_/ /_/
+   ascii
+  end
+
   def success_message
     puts "Congratulations, you're a gelatin-free jet plane!".colorize(:green)
   end
