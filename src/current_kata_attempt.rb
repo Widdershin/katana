@@ -1,7 +1,7 @@
-# Make div_by_2 return the number divided by 2
+# Write a method div_by_2 that takes an input number and returns it divided by two
 
 def div_by_2(number)
-  number.to_f / 2
+  number / 2
 end
 
-puts div_by_2(10) == 5
+Assert.equal(div_by_2(20), 10)
