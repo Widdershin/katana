@@ -4,4 +4,4 @@ def div_by_2(number)
   number.to_f / 2
 end
 
-puts div_by_2(10) == 5
+Assert.equal(div_by_2(20), 10)
