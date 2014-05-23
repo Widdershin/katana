@@ -14,6 +14,11 @@ class KatanaAttemptController
     katas.sample
   end
 
+  def list
+    katas = @io.load
+    @view.list_all(katas)
+  end
+
   def try
     kata = get_kata
     @io.start_new_attempt(kata)

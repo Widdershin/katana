@@ -19,6 +19,8 @@ class Katana
       @katana_attempt_controller.remove(kata_name)
     when "update"
       @katana_attempt_controller.update(kata_name)
+    when "list"
+      @katana_attempt_controller.list
     when "help"
       help_text = <<-help
       Usage: katana.rb [options]

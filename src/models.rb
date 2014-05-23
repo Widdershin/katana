@@ -6,7 +6,12 @@ class Kata
     @filename = filename
     @code = code
   end
+
+  def to_s
+    @filename
+  end
 end
+
 
 
 # adverts = ["This kata is proudly brought to you by: Dev Academy","This kata is proudly brought to you by: Pascals Jellybeans","This kata is proudly brought to you by: Nike","This kata is proudly brought to you by: Hings Tofu"]
