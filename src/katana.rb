@@ -33,6 +33,9 @@ class Katana
       @katana_attempt_controller.list
     when "help"
       @katana_attempt_controller.help
+    else
+      puts "Invalid usage"
+      @katana_attempt_controller.help
     end
   end
 end
