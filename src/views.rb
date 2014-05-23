@@ -3,7 +3,7 @@ require 'pp'
 class ConsoleView
 
   def sponsors
-    puts "Proudly brought to you by Hings Tofu"
+    puts "Proudly brought to you by Hings Tofu".colorize(:yellow)
     pig = <<-ascii
          _//|.-~~~~-,
        _/66  \       \_@
