@@ -5,4 +5,4 @@ def odd_indexed_integers(array)
 
 end
 
-Assert.equal([4,8,12], odd_indexed_integers([2, 4, 6, 8, 10, 12])
+Assert.equal([4,8,12], odd_indexed_integers([2, 4, 6, 8, 10, 12]))

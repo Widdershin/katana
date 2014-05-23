@@ -56,6 +56,7 @@ class KatanaAttemptController
     if result == true
       @view.success_message
     end
+    @view.sponsors
   end
 
   def create(kata_name)
