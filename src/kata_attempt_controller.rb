@@ -1,11 +1,12 @@
 require_relative 'asserts'
 require_relative 'kata_io_controller'
+require_relative 'views'
 
 class KatanaAttemptController
 
   def initialize
     @io = KataFileIO.new("katas")
-    # @views = Views.new
+    @view = ConsoleView.new
   end
 
   def get_kata
@@ -22,8 +23,7 @@ class KatanaAttemptController
     until result == true
       result = attempt_kata(kata)
       if result != true
-        puts "Failed with: #{result}. Get back in the jar, you jellybean."
-        puts "Would you like to retry? y/n"
+        @view.failure_message(result)
         input = $stdin.gets.chomp
         if input == "n"
           break
@@ -31,7 +31,7 @@ class KatanaAttemptController
       end
     end
     if result == true
-      puts "Congratulations, you're a gelatin-free jet plane!"
+      @view.success_message
     end
   end
 
