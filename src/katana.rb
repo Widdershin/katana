@@ -22,14 +22,7 @@ class Katana
     when "list"
       @katana_attempt_controller.list
     when "help"
-      help_text = <<-help
-      Usage: katana.rb [options]
-
-      options: try
-               create [file_name]
-               remove [file_name]
-      help
-      puts help_text
+      @katana_attempt_controller.help
     end
   end
 end
