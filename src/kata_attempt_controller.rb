@@ -51,6 +51,23 @@ class KatanaAttemptController
     end
   end
 
+  def create(kata_name)
+    @io.create(kata_name)
+    open_with_subl(kata_name)
+  end
+
+  def remove(kata_name)
+    @io.remove(kata_name)
+  end
+
+  def update(kata_name)
+    open_with_subl(kata_name)
+  end
+
+  def help
+    @view.help
+  end
+
   def attempt_kata(kata)
     %x(subl -wn current_kata_attempt.rb)
     code = File.open("current_kata_attempt.rb") do |file|
@@ -66,20 +83,7 @@ class KatanaAttemptController
     true
   end
 
-  def create(kata_name)
-    @io.create(kata_name)
-    open_with_subl(kata_name)
-  end
-
-  def remove(kata_name)
-    @io.remove(kata_name)
-  end
-
   def open_with_subl(kata_name)
     %x(subl -wn "katas/#{kata_name}.rb")
-  end
-
-  def update(kata_name)
-    open_with_subl(kata_name)
   end
 end
