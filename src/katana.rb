@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require_relative "kata_attempt_controller"
 
 class Katana
@@ -12,7 +13,12 @@ class Katana
     kata_name = ARGV[1]
     case command
     when "try"
-      @katana_attempt_controller.try
+      if kata_name != nil && kata_name.start_with?(':')
+        tag = kata_name.slice(1..-1)
+      else
+        tag = nil
+      end
+      @katana_attempt_controller.try(tag)
     when "create"
       @katana_attempt_controller.create(kata_name)
     when "remove"
@@ -27,7 +33,5 @@ class Katana
   end
 end
 
-
-katana =  Katana.new
-katana
+katana = Katana.new
 
