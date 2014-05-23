@@ -13,12 +13,16 @@ class Katana
     kata_name = ARGV[1]
     case command
     when "try"
-      if kata_name != nil && kata_name.start_with?(':')
-        tag = kata_name.slice(1..-1)
+      if kata_name != nil
+        if kata_name.start_with?(':')
+          tag = kata_name.slice(1..-1)
+          @katana_attempt_controller.try(tag: tag)
+        else
+          @katana_attempt_controller.try(specific: kata_name)
+        end
       else
-        tag = nil
+        @katana_attempt_controller.try
       end
-      @katana_attempt_controller.try(tag)
     when "create"
       @katana_attempt_controller.create(kata_name)
     when "remove"

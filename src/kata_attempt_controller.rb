@@ -14,6 +14,11 @@ class KatanaAttemptController
     katas.select{|kata| kata.tags.include? tag}.sample
   end
 
+  def get_specific_kata(specific)
+    katas = @io.load
+    kata = katas.find {|kata| kata.filename.end_with? "/#{specific}.rb" }
+  end
+
   def get_kata
     katas = @io.load
     katas.sample
@@ -24,9 +29,11 @@ class KatanaAttemptController
     @view.list_all(katas)
   end
 
-  def try(tag=nil)
+  def try(tag: nil, specific: nil)
     if tag
       kata = get_kata_for_tag(tag)
+    elsif specific
+      kata = get_specific_kata(specific)
     else
       kata = get_kata
     end
