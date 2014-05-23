@@ -15,5 +15,19 @@ class ConsoleView
     puts katas
   end
 
+  def help
+    help_text = <<-help
+      #{"Usage: katana.rb [options]".colorize(:yellow)}
+
+      #{"Options:".colorize(:yellow)} #{"try".colorize(:cyan)}
+               #{"create [file_name]".colorize(:cyan)}
+               #{"remove [file_name]".colorize(:cyan)}
+               #{"update [file_name]".colorize(:cyan)}
+               #{"list   (lists all katas avaliable)".colorize(:cyan)}
+
+      help
+    puts help_text
+  end
+
 end
 
