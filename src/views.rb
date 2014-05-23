@@ -4,13 +4,14 @@ class ConsoleView
 
   def sponsors
     puts "Proudly brought to you by Hings Tofu"
-    puts <<-ascii
+    pig = <<-ascii
          _//|.-~~~~-,
        _/66  \       \_@
       (")_   /   /   |
         '--'|| |-\  /
    jgs      //_/ /_/
    ascii
+   puts pig.colorize(:light_magenta)
   end
 
   def success_message
