@@ -1,45 +1,53 @@
 require_relative 'asserts'
-require_relative 'kata_io_controller'
+require_relative 'file_controller'
 require_relative 'views'
 
-class KatanaAttemptController
+class AttemptController
 
   def initialize
-    @io = KataFileIO.new("katas")
+    @kata_files = FileController.new("katas")
     @view = ConsoleView.new
   end
 
   def get_kata_for_tag(tag)
-    katas = @io.load
+    katas = @kata_files.load
     katas.select{|kata| kata.tags.include? tag}.sample
   end
 
-  def get_specific_kata(specific)
-    katas = @io.load
-    kata = katas.find {|kata| kata.filename.end_with? "/#{specific}.rb" }
+  def get_specific_kata(specific_kata_name)
+    katas = @kata_files.load
+    katas.find {|kata| kata.name == specific_kata_name }
   end
 
-  def get_kata
-    katas = @io.load
+  def get_random_kata
+    katas = @kata_files.load
     katas.sample
   end
 
   def list
-    katas = @io.load
+    katas = @kata_files.load
     @view.list_all(katas)
   end
 
-  def try(tag: nil, specific: nil)
-    if tag
-      kata = get_kata_for_tag(tag)
-    elsif specific
-      kata = get_specific_kata(specific)
-    else
-      kata = get_kata
-    end
+  def try_tag(tag)
+    kata = get_kata_for_tag(tag)
+    try(kata)
+  end
+
+  def try_specific(specific_kata)
+    kata = get_specific_kata(specific_kata)
+    try(kata)
+  end
+
+  def try_random
+    kata = get_random_kata
+    try(kata)
+  end
+
+  def try(kata)
     @view.display_title(kata)
 
-    @io.start_new_attempt(kata)
+    @kata_files.start_new_attempt(kata)
 
     result = false
 
@@ -53,6 +61,7 @@ class KatanaAttemptController
         end
       end
     end
+
     if result == true
       @view.success_message
     end
@@ -60,12 +69,12 @@ class KatanaAttemptController
   end
 
   def create(kata_name)
-    @io.create(kata_name)
+    @kata_files.create(kata_name)
     open_with_subl(kata_name)
   end
 
   def remove(kata_name)
-    @io.remove(kata_name)
+    @kata_files.remove(kata_name)
   end
 
   def update(kata_name)

@@ -1,15 +1,19 @@
 
 class Kata
-  attr_reader :filename, :tags
+  attr_reader :name, :tags
   attr_accessor :code
-  def initialize(filename, code, tags=[])
-    @filename = filename
+  def initialize(name, code, tags=[])
+    @name = name
     @code = code
     @tags = tags
   end
 
   def to_s
-    @filename
+    "#{name} #{tag_string}"
+  end
+
+  def tag_string
+    tags ? "- :#{tags.join(', :')}" : ""
   end
 end
 
