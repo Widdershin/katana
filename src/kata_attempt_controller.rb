@@ -16,7 +16,7 @@ class KatanaAttemptController
 
   def get_specific_kata(specific)
     katas = @io.load
-    kata = katas.find {|kata| kata.filename.end_with? "/#{specific}.rb" }
+    katas.find {|kata| kata.filename.end_with? "/#{specific}.rb" }
   end
 
   def get_kata
