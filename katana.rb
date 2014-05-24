@@ -23,7 +23,7 @@ class Katana
       else
         @katana_attempt_controller.try_random
       end
-    when "create"
+    when "add"
       @katana_attempt_controller.create(kata_name)
     when "remove"
       @katana_attempt_controller.remove(kata_name)

@@ -36,7 +36,7 @@ class ConsoleView
       #{"Usage: katana.rb [options]".colorize(:yellow)}
 
       #{"Options:".colorize(:yellow)} #{"try [:tag] [specific_kata]".colorize(:cyan)}
-               #{"create <file_name>".colorize(:cyan)}
+               #{"add <file_name>".colorize(:cyan)}
                #{"remove <file_name>".colorize(:cyan)}
                #{"update <file_name>".colorize(:cyan)}
                #{"list   (lists all katas avaliable)".colorize(:cyan)}
