@@ -16,12 +16,12 @@ class Katana
       if kata_name != nil
         if kata_name.start_with?(':')
           tag = kata_name.slice(1..-1)
-          @katana_attempt_controller.try(tag: tag)
+          @katana_attempt_controller.try_tag(tag)
         else
-          @katana_attempt_controller.try(specific: kata_name)
+          @katana_attempt_controller.try_specific(kata_name)
         end
       else
-        @katana_attempt_controller.try
+        @katana_attempt_controller.try_random
       end
     when "create"
       @katana_attempt_controller.create(kata_name)

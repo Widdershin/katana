@@ -19,7 +19,7 @@ class KatanaAttemptController
     katas.find {|kata| kata.filename.end_with? "/#{specific}.rb" }
   end
 
-  def get_kata
+  def get_random_kata
     katas = @io.load
     katas.sample
   end
@@ -29,14 +29,22 @@ class KatanaAttemptController
     @view.list_all(katas)
   end
 
-  def try(tag: nil, specific: nil)
-    if tag
-      kata = get_kata_for_tag(tag)
-    elsif specific
-      kata = get_specific_kata(specific)
-    else
-      kata = get_kata
-    end
+  def try_tag(tag)
+    kata = get_kata_for_tag(tag)
+    try(kata)
+  end
+
+  def try_specific(specific_kata)
+    kata = get_specific_kata(specific_kata)
+    try(kata)
+  end
+
+  def try_random
+    kata = get_random_kata
+    try(kata)
+  end
+
+  def try(kata)
     @view.display_title(kata)
 
     @io.start_new_attempt(kata)
@@ -53,6 +61,7 @@ class KatanaAttemptController
         end
       end
     end
+    
     if result == true
       @view.success_message
     end
