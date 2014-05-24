@@ -5,7 +5,6 @@ class Katana
 
   def initialize
     @attempt = AttemptController.new
-    get_user_commands
   end
 
   def start(input)
