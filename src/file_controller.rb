@@ -25,7 +25,9 @@ class FileController
           tags = first_line.slice(tags_prefix.length..-1).split(',')
         end
 
-        new_kata = Kata.new(filename, file_contents, tags)
+        kata_name = File.basename(filename, ".rb")
+
+        new_kata = Kata.new(kata_name, file_contents, tags)
         loaded_katas << new_kata
       end
     end

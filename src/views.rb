@@ -28,7 +28,7 @@ class ConsoleView
   end
 
   def display_title(kata)
-    puts "You are now attempting #{kata.filename}"
+    puts "You are now attempting #{kata.name}"
   end
 
   def help

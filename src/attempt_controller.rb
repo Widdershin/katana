@@ -14,9 +14,9 @@ class AttemptController
     katas.select{|kata| kata.tags.include? tag}.sample
   end
 
-  def get_specific_kata(specific)
+  def get_specific_kata(specific_kata_name)
     katas = @kata_files.load
-    katas.find {|kata| kata.filename.end_with? "/#{specific}.rb" }
+    katas.find {|kata| kata.name == specific_kata_name }
   end
 
   def get_random_kata
