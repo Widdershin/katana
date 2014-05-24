@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
-require_relative "src/kata_attempt_controller"
+require_relative "src/attempt_controller"
 
 class Katana
 
   def initialize
-    @katana_attempt_controller = KatanaAttemptController.new
+    @katana_attempt_controller = AttemptController.new
     get_user_commands
   end
 
