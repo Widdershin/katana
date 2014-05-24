@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative "kata_attempt_controller"
+require_relative "src/kata_attempt_controller"
 
 class Katana
 
@@ -41,4 +41,3 @@ class Katana
 end
 
 katana = Katana.new
-
