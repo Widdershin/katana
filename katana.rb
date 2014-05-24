@@ -4,38 +4,36 @@ require_relative "src/attempt_controller"
 class Katana
 
   def initialize
-    @katana_attempt_controller = AttemptController.new
+    @attempt = AttemptController.new
     get_user_commands
   end
 
   def get_user_commands
     command = ARGV[0]
-    kata_name = ARGV[1]
+    argument = ARGV[1]
     case command
     when "try"
-      if kata_name != nil
-        if kata_name.start_with?(':')
-          tag = kata_name.slice(1..-1)
-          @katana_attempt_controller.try_tag(tag)
-        else
-          @katana_attempt_controller.try_specific(kata_name)
-        end
+      if argument.nil?
+        @attempt.try_random
+      elsif rgument.start_with?(':')
+        tag = argument.slice(1..-1)
+        @attempt.try_tag(tag)
       else
-        @katana_attempt_controller.try_random
+        @attempt.try_specific(argument)
       end
     when "add"
-      @katana_attempt_controller.create(kata_name)
+      @attempt.create(argument)
     when "remove"
-      @katana_attempt_controller.remove(kata_name)
+      @attempt.remove(argument)
     when "update"
-      @katana_attempt_controller.update(kata_name)
+      @attempt.update(argument)
     when "list"
-      @katana_attempt_controller.list
+      @attempt.list
     when "help"
-      @katana_attempt_controller.help
+      @attempt.help
     else
       puts "Invalid usage"
-      @katana_attempt_controller.help
+      @attempt.help
     end
   end
 end
