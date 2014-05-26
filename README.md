@@ -1,4 +1,4 @@
 katana
 ======
 
-A CLI app for code katas.
+A CLI app for code katas. Hone your mind.
